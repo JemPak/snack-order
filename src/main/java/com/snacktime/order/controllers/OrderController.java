@@ -3,7 +3,9 @@ package com.snacktime.order.controllers;
 
 
 import com.snacktime.order.exceptions.orderNotFoundException;
+import com.snacktime.order.exceptions.personNotFoundException;
 import com.snacktime.order.models.Order;
+import com.snacktime.order.models.Person;
 import com.snacktime.order.repositories.OrderRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,8 +38,15 @@ public class OrderController {
         );
     }
 
-   /* @GetMapping("/orderMachine/{idMachine}")
+   @GetMapping("/orderMachine/{idMachine}")
     List<Order> listOrdersByMachine(@PathVariable Integer idMachine){
-        return orderRepository.filterByIdMachine(idMachine);
-    }*/
+        return orderRepository.findByIdMachine(idMachine);
+    }
+
+    @GetMapping("/ordersByEmail/{email}")
+    List<Order> listOrderByEmail(@PathVariable String email){
+        return orderRepository.findById(email).orElseThrow(
+                () -> new personNotFoundException("Persona con email " + email + " no encontrada" )
+        );
+    }
 }

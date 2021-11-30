@@ -2,11 +2,9 @@ package com.snacktime.order.controllers;
 
 import com.snacktime.order.exceptions.personNotFoundException;
 import com.snacktime.order.models.Person;
-import com.snacktime.order.repositories.OrderRepository;
 import com.snacktime.order.repositories.PersonRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 public class PersonController {
@@ -18,6 +16,7 @@ public class PersonController {
 
     @PostMapping("/addOrder")
     String addOrder(@RequestBody Person person ){
+        //System.out.println(personRepository.findById(person.getUserEmail()));
         Person person1 = personRepository.findById(person.getUserEmail()).orElse(null);
         if (person1 == null) {
             person = new Person(person.getUserEmail(), person.getLastOrder());
@@ -34,6 +33,7 @@ public class PersonController {
         personRepository.save(person1);
         return "Actualizacion Exitosa!";
     }
+
 
     @GetMapping("/ordersByEmail/{email}")
     String listOrder(@PathVariable String email){

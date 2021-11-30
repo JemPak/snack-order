@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Person {
     @Id
-    private String userEmail;
+    private String id;
     private List<String> orders = new ArrayList<>();
 
     public Person(String userEmail, String order) {
-        this.userEmail = userEmail;
+        this.id = userEmail;
         this.orders.add(order);
     }
 
@@ -21,11 +21,11 @@ public class Person {
     }
 
     public String getUserEmail() {
-        return userEmail;
+        return id;
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        this.id = userEmail;
     }
 
     public List<String> getOrders() {
