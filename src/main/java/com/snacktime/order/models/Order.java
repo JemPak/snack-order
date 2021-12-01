@@ -10,15 +10,18 @@ import java.util.List;
 public class Order {
     @Id
     private String id;
+    private String userEmail;
     private List<String> products;
     private Date dateCreate;
     private Integer balanceOrder;
     private Integer idMachine;
 
-    public Order(String id, List<String> products, Date dateCreate, Integer idMachine) {
+    public Order(String id, String userEmail, List<String> products, Date dateCreate, Integer balanceOrder, Integer idMachine) {
         this.id = id;
+        this.userEmail = userEmail;
         this.products = products;
         this.dateCreate = new Date();
+        this.balanceOrder = balanceOrder;
         this.idMachine = idMachine;
     }
 
@@ -28,6 +31,14 @@ public class Order {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public List<String> getProducts() {
